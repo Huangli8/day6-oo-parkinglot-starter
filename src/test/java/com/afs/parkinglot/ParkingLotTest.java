@@ -20,7 +20,16 @@ public class ParkingLotTest {
         ParkingLot parkingLot=new ParkingLot();
         ParkingTicket parkingTicket=parkingLot.park(car);
         assertEquals(car,parkingLot.fetch(parkingTicket));
-
     }
 
+    @Test
+    void should_return_correct_car_each_time_when_fetch_cars_given_two_cars_and_two_tickets(){
+        Car car1=new Car();
+        Car car2=new Car();
+        ParkingLot parkingLot=new ParkingLot();
+        ParkingTicket parkingTicket1=parkingLot.park(car1);
+        ParkingTicket parkingTicket2=parkingLot.park(car2);
+        assertEquals(car1,parkingLot.fetch(parkingTicket1));
+        assertEquals(car2,parkingLot.fetch(parkingTicket2));
+    }
 }
