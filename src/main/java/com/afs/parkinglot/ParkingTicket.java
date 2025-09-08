@@ -1,6 +1,6 @@
 package com.afs.parkinglot;
 
-public class Ticket {
+public class ParkingTicket {
     private boolean isUsed=false;
 
     public boolean isUsed() {
