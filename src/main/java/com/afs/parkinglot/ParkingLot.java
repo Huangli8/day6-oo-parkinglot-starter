@@ -12,7 +12,7 @@ public class ParkingLot {
     }
     public ParkingTicket park(Car car) {
         if (parkingCapacity == 0) {
-            return null;
+            throw new NoAvailablePositionException("No available position.");
         }
         if(car.isParked()){
             return null;
@@ -25,19 +25,13 @@ public class ParkingLot {
     }
 
     public Car fetch(ParkingTicket ticket) {
-        if (ticket == null) {
-            return null;
-        }
-        if (ticket.isUsed()) {
-            return null;
-        }
+        if(ticket == null) return null;
         if (!parkedCars.containsKey(ticket)) {
-            return null;
+            throw new UnrecognizedParkingTicketException("Unrecognized parking ticket.");
         }
         Car car = parkedCars.get(ticket);
         car.setParked(false);
         parkedCars.remove(ticket);
-        ticket.setUsed(true);
         parkingCapacity++;
         return car;
     }
